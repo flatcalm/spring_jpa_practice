@@ -109,5 +109,31 @@ class ProductRepositoryTest {
         assertNotNull(foundProduct);
 
     }
+
+    @Test
+    @DisplayName("2번 상품의 이름과 가격을 변경해야 한다.")
+    void testModify() {
+        //given
+        long id = 2L;
+        String newName = "짜장면";
+        int newPrice = 6000;
+        //when
+        // jpa에서 update는 따로 메서드를 지원하지 않고
+        // 조회를 한 후 setter로 변경하면 자동으로 update문이 나갑니다.
+        // 변경 후 다시 save를 호출하세요.
+        Optional<Product> product = productRepository.findById(id);
+        product.ifPresent(p -> {
+            p.setName(newName);
+            p.setPrice(newPrice);
+
+            productRepository.save(p);
+        });
+
+        //then
+        assertTrue(product.isPresent());
+
+        Product p = product.get();
+        assertEquals("짜장면", p.getName());
+    }
     
 }
