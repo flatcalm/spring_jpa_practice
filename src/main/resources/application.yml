@@ -14,7 +14,7 @@ spring:
     # 로그가 나올 때 어떤 DB에 맞게 나오는지 설정 (방언 설정)
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto: update # DDL 명령이 실행되면 자동으로 생성
+      ddl-auto: update
 #    properties:
 #      hibernate:
 #        format_sql: true # sql을 줄바꿈해서 깔끔하게 출력
