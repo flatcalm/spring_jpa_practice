@@ -33,7 +33,9 @@ public class PostApiController {
 
         PostListResponseDTO dto = postService.getPosts(pageDTO);
 
-        return null;
+        return ResponseEntity
+                .ok()
+                .body(dto);
     }
 
 }
