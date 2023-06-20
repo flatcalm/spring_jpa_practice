@@ -1,9 +1,6 @@
 package com.spring.jpa.chap05_practice.service;
 
-import com.spring.jpa.chap05_practice.dto.PageDTO;
-import com.spring.jpa.chap05_practice.dto.PageResponseDTO;
-import com.spring.jpa.chap05_practice.dto.PostDetailResponseDTO;
-import com.spring.jpa.chap05_practice.dto.PostListResponseDTO;
+import com.spring.jpa.chap05_practice.dto.*;
 import com.spring.jpa.chap05_practice.entity.Post;
 import com.spring.jpa.chap05_practice.repository.HashTagRepository;
 import com.spring.jpa.chap05_practice.repository.PostRepository;
@@ -16,7 +13,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -58,4 +54,18 @@ public class PostService {
                 .build();
     }
 
+    public PostDetailResponseDTO getDetail(long id) {
+
+        Post postEntity = postRepository.findById(id).orElseThrow(
+                () -> new RuntimeException(id + "번 게시물이 존재하지 않습니다.")
+        );
+
+        return new PostDetailResponseDTO(postEntity);
+
+    }
+
+    public PostDetailResponseDTO insert(PostCreateDTO dto) {
+
+        return null;
+    }
 }
